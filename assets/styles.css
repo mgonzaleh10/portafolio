@@ -1,7 +1,134 @@
-body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; }
-main { max-width: 880px; margin: 2rem auto; padding: 0 1rem; }
-h1 { margin-bottom: .25rem; }
-h2 { margin-top: 2rem; }
-a { text-decoration: none; }
-ul { padding-left: 1.25rem; }
-footer { margin-top: 3rem; opacity: .7; }
+/* ====== Variables y resets ====== */
+:root{
+  --bg: #f7f8fa;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --brand: #2563eb;
+  --brand-weak: #e8f0ff;
+  --radius: 16px;
+  --shadow: 0 6px 24px rgba(0,0,0,.06);
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0b1220;
+    --text: #e5e7eb;
+    --muted: #9aa4b2;
+    --card: #0f172a;
+    --border: #1f2937;
+    --brand: #60a5fa;
+    --brand-weak: #0b1c36;
+    --shadow: 0 6px 24px rgba(0,0,0,.35);
+  }
+}
+
+*{ box-sizing: border-box; }
+html,body{ margin:0; padding:0; }
+img{ max-width:100%; display:block; }
+
+/* ====== Layout base ====== */
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container{
+  max-width: 960px;
+  margin: 2.5rem auto;
+  padding: 0 1rem;
+}
+
+/* ====== Header ====== */
+.site-header{
+  margin: 0 0 1.5rem;
+  padding: 2.25rem 0 1.5rem;
+  background: linear-gradient(180deg, var(--brand-weak), transparent 70%);
+  border-bottom: 1px solid var(--border);
+}
+.site-title{
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+.site-subtitle{
+  margin: .25rem 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* ====== secciones ====== */
+.section{ margin: 1.5rem 0; }
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.25rem;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  border-color: color-mix(in oklab, var(--brand) 20%, var(--border));
+}
+
+/* ====== Títulos ====== */
+h1,h2,h3{ letter-spacing: -0.015em; line-height: 1.25; }
+h2{
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  margin: 0 0 .75rem;
+}
+
+/* ====== Lista de proyectos ====== */
+ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: .9rem;
+}
+.project{
+  padding: .9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 4px);
+  background: var(--card);
+  transition: border-color .2s ease, transform .2s ease;
+}
+.project:hover{
+  border-color: color-mix(in oklab, var(--brand) 25%, var(--border));
+  transform: translateY(-1px);
+}
+a{ color: var(--brand); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+/* ====== Badges ====== */
+.badge{
+  display: inline-block;
+  font-size: .8rem;
+  color: var(--brand);
+  background: var(--brand-weak);
+  padding: .25rem .5rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--brand) 30%, var(--border));
+}
+
+/* ====== Footer ====== */
+footer{
+  margin: 2rem 0 3rem;
+  color: var(--muted);
+  font-size: .95rem;
+  text-align: center;
+  border-top: 1px dashed var(--border);
+  padding-top: 1rem;
+}
+
+/* ====== Resp. tipográfica ====== */
+p{ margin: .25rem 0 .75rem; }
+
+/* ====== Reduce motion ====== */
+@media (prefers-reduced-motion: reduce){ *{ transition: none !important; } }
